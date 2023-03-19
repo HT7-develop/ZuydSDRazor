@@ -1,0 +1,111 @@
+﻿body {
+    background: #2f2f2f;
+    color: #f2f2f2;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    padding: 0.5rem;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0,0,0,0.3));
+    z-index: 10;
+    position: fixed;
+    justify-content: center;
+    align-content: center;
+}
+
+.container_text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    z-index: 5;
+}
+
+.title_text {
+    font-size: 3rem;
+    border: 5px solid white;
+    padding: 1rem;
+    text-align: center;
+    opacity: 0;
+    animation: fade-in 5s ease-out forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+button {
+    background: transparent;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Sans Serif Collection';
+    border: 2px white solid;
+    border-radius: 20px;
+    padding: .5rem;
+    margin: 0rem 1rem;
+    height: fit-content;
+    width: 100px;
+    transition-duration: 0.5s;
+}
+
+    button:hover {
+        background: white;
+        color: black;
+        /*border:none;*/
+        transition-duration: 1s;
+        border-radius: 0;
+        height: 100%;
+    }
+
+.section_video {
+    height: 100vh;
+    width: 100vw;
+}
+
+.main_video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1)
+}
+
+.main-buttons {
+    margin: 1rem;
+}
+
+    .main-buttons a {
+        text-decoration: none;
+        background: purple;
+        color: #f2f2f2;
+        padding: 1rem;
+        border-radius: 20px;
+        margin: 1rem;
+        border: none;
+    }
+
+        /* .main-buttons a:hover {
+            text-decoration: none;
+            background: #f2f2f2;
+            color: #2f2f2f;
+            transition: 0.3s;
+        }*/
+
+        .main-buttons a:visited {
+            background: #2f2f2f;
+            color: white;
+        }

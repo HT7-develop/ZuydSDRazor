@@ -1,0 +1,24 @@
+﻿@page
+@model ZuydRazorApplication.Pages.IndexModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Jo Bonten | Home";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<body>
+    <nav class="navigation">
+        <button>Home</button>
+        <button>Video's</button>
+        <button>Moves</button>
+    </nav>
+    <section class="section_video">
+        <div class="container_text">
+            <h1 class="title_text" style="z-index:10;position:absolute;">Jo Bonten</h1>
+        </div>
+        <video muted class="main_video" src="/vid/Jo_intro.mp4"></video>
+    </section>
+
+</body>
+
