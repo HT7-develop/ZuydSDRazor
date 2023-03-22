@@ -1,23 +1,57 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using ZuydSDRazor.Data;
+using ZuydSDRazor.Models;
+using Microsoft.Extensions.DependencyInjection;
+using StudentenDatabase.Models;
 
-namespace MyRazorApp
+var builder = WebApplication.CreateBuilder(args);
+
+
+
+// Add services to the container.
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<BontenDbContext>(opt => opt.UseSqlite("Data Source=RazorPagesMovie.Data.db"));
+
+
+
+var app = builder.Build();
+
+
+
+// Configure the HTTP request pipeline.
+
+if (!app.Environment.IsDevelopment())
+
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+    app.UseExceptionHandler("/Error");
 
-            Host.CreateDefaultBuilder(args)
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 
-                .ConfigureWebHostDefaults(webBuilder =>
+    app.UseHsts();
 
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
 }
+
+
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+
+
+app.UseRouting();
+
+
+
+app.UseAuthorization();
+
+
+
+app.MapRazorPages();
+
+
+
+app.Run();

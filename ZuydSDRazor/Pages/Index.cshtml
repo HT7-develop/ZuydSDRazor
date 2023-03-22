@@ -9,16 +9,15 @@
 
 <body>
     <nav class="navigation">
-        <button>Home</button>
-        <button>Video's</button>
-        <button>Moves</button>
+        <a asp-page="Index">Home</a>
+        <a asp-page="Courses">Courses</a>
+        <a asp-page="Moves">Moves Library</a>
     </nav>
-    <section class="section_video">
+    <section class="section_video" style="padding:0;margin:auto;">
         <div class="container_text">
-            <h1 class="title_text" style="z-index:10;position:absolute;">Jo Bonten</h1>
+            <h1 class="title_text" style="z-index:10;position:absolute;">Jo Bonten<br /> Self-Defense</h1>
         </div>
-        <video muted class="main_video" src="/vid/Jo_intro.mp4"></video>
+        <video muted autoplay class="main_video" src="/vid/Jo_intro.mp4"></video>
     </section>
-
 </body>
 
