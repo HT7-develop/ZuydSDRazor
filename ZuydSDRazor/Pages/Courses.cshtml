@@ -1,7 +1,7 @@
 ﻿@page
 @model ZuydSDRazor.Pages.CoursesModel
 @{
-    Layout = "_Layout";
+    Layout = "_Layout_Courses";
     ViewData["Title"] = "Jo Bonten | Courses";
 }
 
@@ -13,10 +13,23 @@
         <a asp-page="Courses">Courses</a>
         <a asp-page="Moves">Moves Library</a>
     </nav>
-    <section class="search-container">
-        <div>
+    <div class="row" style="margin: 0px 20px 0px 20px; padding-top:8rem;">
+        <div class="col-12">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>Beschrijving</th>
+                    <th>Video</th>
+                </tr>
 
+                @foreach (var s in Model.Onderwerpen)
+                {
+                    <tr>
+                        <td><b>@s.Beschrijving</b></td>
+                        <td><a asp-page="Moves">Video</a></td>
+                    </tr>
+                }
+            </table>
         </div>
-    </section>
+    </div>
 </body>
 
