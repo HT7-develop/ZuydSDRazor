@@ -55,8 +55,8 @@
         height: 100%;
     }
 
-td a {
-    display:block;
+.video-button {
+    display: block;
     background: transparent;
     text-decoration: none;
     color: black;
@@ -71,12 +71,65 @@ td a {
     transition-duration: 0.5s;
 }
 
-    td a:hover {
+    .video-button:hover {
         background: black;
         color: white;
         border: 2px white solid;
         border-bottom-right-radius: 15px;
-        border-top-left-radius:15px;
+        border-top-left-radius: 15px;
         transition-duration: 0.5s;
         /*height:20px;*/
     }
+
+.delete-button {
+    display: block;
+    background: transparent;
+    text-decoration: none;
+    color: red;
+    font-size: 1.5rem;
+    font-family: 'Sans Serif Collection';
+    padding: .5rem;
+    width: fit-content;
+    transition-duration: 0.5s;
+}
+
+    .delete-button::before {
+        content: "";
+        position: absolute;
+        /*top: 50%;*/
+        /*left: -100px;*/
+        /*transform: translateY(-50%);*/
+        width: 2rem;
+        height: 2rem;
+        background-image: url('/img/trash-solid.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin:0;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .delete-button:hover::before {
+        opacity: 1;
+        /*left: 50%;*/
+        color: white;
+        transition-duration: 0.5s;
+    }
+
+    .delete-button:hover::after {
+        position:absolute;
+        opacity: 1;
+        content: "";
+        left:-200px;
+    }
+
+.btn-text {
+    display: inline-block;
+    /*margin-left: 10px;*/
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover .btn-text {
+    opacity: 0;
+    transform: translateX(20px);
+}

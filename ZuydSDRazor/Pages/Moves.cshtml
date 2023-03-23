@@ -1,7 +1,7 @@
 ﻿@page
 @model ZuydSDRazor.Pages.MovesModel
 @{
-    Layout = "_Layout";
+    Layout = "_Layout_Courses";
     ViewData["Title"] = "Jo Bonten | Moves";
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -10,8 +10,28 @@
 <body>
     <nav class="navigation">
         <a asp-page="Index">Home</a>
-        <a asp-page="Courses">Courses</a>
+        <a asp-page="Courses">Tutorials</a>
         <a asp-page="Moves">Moves Library</a>
     </nav>
-    
+    <div class="row" style="margin: 0px 20px 0px 20px; padding-top:8rem;">
+        <div class="col-12">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>Titel</th>
+                    <th>Video</th>
+                </tr>
+
+                @foreach (var s in Model.Videos)
+                {
+                    <tr>
+                        <td><b>@s.Titel</b></td>
+                        <td>
+                            <iframe src="@s.Link">
+                            </iframe>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
 </body>

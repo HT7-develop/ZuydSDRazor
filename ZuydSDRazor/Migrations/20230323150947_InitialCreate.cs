@@ -27,7 +27,8 @@ namespace ZuydSDRazor.Migrations
                 name: "Videos",
                 columns: table => new
                 {
-                    VideoId = table.Column<string>(type: "TEXT", nullable: false),
+                    VideoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Link = table.Column<string>(type: "TEXT", nullable: true),
                     Titel = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -41,7 +42,7 @@ namespace ZuydSDRazor.Migrations
                 columns: table => new
                 {
                     OnderwerpenOnderwerpId = table.Column<int>(type: "INTEGER", nullable: false),
-                    VideosVideoId = table.Column<string>(type: "TEXT", nullable: false)
+                    VideosVideoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

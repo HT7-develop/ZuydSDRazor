@@ -2,7 +2,7 @@
 @model ZuydSDRazor.Pages.CoursesModel
 @{
     Layout = "_Layout_Courses";
-    ViewData["Title"] = "Jo Bonten | Courses";
+    ViewData["Title"] = "Jo Bonten | Tutorials";
 }
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -10,22 +10,28 @@
 <body>
     <nav class="navigation">
         <a asp-page="Index">Home</a>
-        <a asp-page="Courses">Courses</a>
+        <a asp-page="Courses">Tutorials</a>
         <a asp-page="Moves">Moves Library</a>
     </nav>
     <div class="row" style="margin: 0px 20px 0px 20px; padding-top:8rem;">
         <div class="col-12">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover">
                 <tr>
                     <th>Beschrijving</th>
                     <th>Video</th>
+                    <td>Acties</td>
                 </tr>
 
                 @foreach (var s in Model.Onderwerpen)
                 {
                     <tr>
-                        <td><b>@s.Beschrijving</b></td>
-                        <td><a asp-page="Moves">Video</a></td>
+                        <td class="align-middle"><b>@s.Beschrijving</b></td>
+                        <td class="align-middle"><a asp-page="Moves" class="video-button">Video</a></td>
+                        <td class="align-middle">
+                            <a href="#" class="delete-button" data-id="@s.OnderwerpId">
+                                <span class="btn-text">Verwijder</span>
+                            </a>
+                        </td>
                     </tr>
                 }
             </table>

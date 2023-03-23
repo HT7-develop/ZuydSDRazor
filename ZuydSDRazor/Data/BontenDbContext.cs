@@ -11,7 +11,6 @@ namespace ZuydSDRazor.Data
         }
         public DbSet<Video> Videos { get; set; } = default!;
         public DbSet<Onderwerp> Onderwerpen { get; set; } = default!;
-        //public DbSet<Koppeling> Koppelingen { get; set; } = default!;
     }
 }
 

@@ -24,6 +24,5 @@ namespace ZuydSDRazor.Pages
             Onderwerpen = db.Onderwerpen.OrderBy(s => s.Beschrijving).ToList();
 
         }
-
     }
 }
