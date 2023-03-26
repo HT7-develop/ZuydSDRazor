@@ -9,12 +9,14 @@ using ZuydSDRazor.Models;
 
 namespace ZuydSDRazor.Pages
 {
-    public class MovesModel : PageModel
+    public class VideosModel : PageModel
     {
         public IEnumerable<Video> Videos { get; set; } = null!;
-
         private BontenDbContext db;
-        public MovesModel(BontenDbContext injectedContext)
+        [BindProperty]
+        public string VideoSearch { get; set; }
+
+        public VideosModel(BontenDbContext injectedContext)
         {
             db = injectedContext;
         }
@@ -22,7 +24,13 @@ namespace ZuydSDRazor.Pages
         public void OnGet()
         {
             Videos = db.Videos.OrderBy(s => s.Titel).ToList();
-
+        }
+        public async Task<IActionResult> OnGetSearch(string searchString)
+        {
+            var VideoSearch = await db.Videos.FindAsync(searchString);
+            
+            db.Videos.Find(VideoSearch);
+            return RedirectToPage("Videos");
         }
     }
 }

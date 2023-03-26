@@ -1,0 +1,67 @@
+﻿@page
+@model ZuydSDRazor.Pages.OnderwerpenModel
+@{
+    Layout = "_Layout_Courses";
+    ViewData["Title"] = "Jo Bonten | Onderwerpen";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<body>
+    <nav class="navigation">
+        <a asp-page="Index">Home</a>
+        <a asp-page="Onderwerpen">Onderwerpen</a>
+        <a asp-page="Videos">Videos</a>
+    </nav>
+    <div class="row" style="margin: 0px 20px 0px 20px; padding-top:8rem;">
+
+        <div style="display:flex; flex-direction:row; justify-content:center;">
+            <img class="intro_image" src="~/img/ninja_tutorial.gif">
+            <h1>Onderwerpen</h1>
+            <img class="intro_image" src="~/img/ninja_tutorial.gif">
+        </div>
+
+        @*Add Onderwerp bar*@
+        <div style="margin:15px 0px 15px 0px;display:flex;flex-direction:row;justify-content:center;">
+            <form method="post">
+                <label for="Onderwerp.Beschrijving">Voeg nieuw Onderwerp toe</label>
+                <input asp-for="Onderwerp.Beschrijving" type="text" style="width:30vw;" />
+                <button asp class="add-button" type="submit" asp-page-handler="New">Opslaan</button>
+                <span asp-validation-for="Onderwerp.Beschrijving" class="text-danger"></span>
+            </form>
+        </div>
+
+
+        <div class="col-12">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Omschrijving</th>
+                        <th>Video</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                @foreach (var s in Model.Onderwerpen)
+                {
+                    <tr>
+                        <td class="align-middle"><b>@s.Beschrijving</b></td>
+                        <td class="align-middle"><a asp-page="Details" asp-route-id="@s.OnderwerpId" class="video-button">Video</a></td>
+                        <td class="align-middle">
+                            <form method="post">
+                                <input type="hidden" name="id" value="@s.OnderwerpId" />
+                                <button type="submit" class="delete-button" @*asp-page="Courses" asp-route-id="@s.OnderwerpId"*@ onclick="return confirm('Weet je zeker dat je dit onerwerp wilt verwijderen?')"><span class="btn-text">Verwijder</span></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -73,7 +73,7 @@ public static class SeedData
                 new Video
                 {
                     Link = "https://www.youtube.com/embed/gNd5c2C8Doc",
-                    Titel = "Spinning Back Fist"
+                    Titel = "Spinning Back Fist",
                 },
 
                 new Video
@@ -165,6 +165,8 @@ public static class SeedData
                     Titel = "HeadbuL"
                 }
              ) ;
+
+      
 
         context.SaveChanges();
 
