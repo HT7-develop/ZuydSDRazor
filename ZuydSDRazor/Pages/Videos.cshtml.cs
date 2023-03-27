@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using ZuydSDRazor.Data;
 using ZuydSDRazor.Models;
 
@@ -13,8 +14,9 @@ namespace ZuydSDRazor.Pages
     {
         public IEnumerable<Video> Videos { get; set; } = null!;
         private BontenDbContext db;
-        [BindProperty]
-        public string VideoSearch { get; set; }
+
+        //[BindProperty]
+        //public IEnumerable<string> SearchTerm { get; set; } = null!;
 
         public VideosModel(BontenDbContext injectedContext)
         {
@@ -25,12 +27,25 @@ namespace ZuydSDRazor.Pages
         {
             Videos = db.Videos.OrderBy(s => s.Titel).ToList();
         }
-        public async Task<IActionResult> OnGetSearch(string searchString)
-        {
-            var VideoSearch = await db.Videos.FindAsync(searchString);
+
+        //public IEnumerable<Video> Search(string SearchTerm)
+        //{
+        //    //var VideoSearch = await db.Videos.FindAsync(searchString);
             
-            db.Videos.Find(VideoSearch);
-            return RedirectToPage("Videos");
+        //    //db.Videos.Find(VideoSearch);
+        //    //return RedirectToPage("Videos");
+        //    if (string.IsNullOrWhiteSpace(SearchTerm))
+        //    {
+        //        Videos = db.Videos.OrderBy(s => s.Titel).ToList();
+        //    }
+        //    return Videos.Where(e => e.Titel.Contains(SearchTerm));
+        //}
+
+        public async Task OnPostAsync()
+        {
+            var SearchTerm = Request.Form["SearchTerm"];
+
+            Videos = await db.Videos.Where(s => s.Titel.Contains(SearchTerm)).ToListAsync();
         }
     }
 }
