@@ -36,27 +36,28 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>Omschrijving</th>
+                        <th><a href="">Omschrijving</a></th>
                         <th>Video</th>
                         <th></th>
                     </tr>
                 </thead>
-
-                @foreach (var s in Model.Onderwerpen)
-                {
-                    <tr>
-                        <td class="align-middle"><b>@s.Beschrijving</b></td>
-                        <td class="align-middle">
-                            <a asp-page="Details" asp-route-id="@s.OnderwerpId" class="video-button">Video</a>
-                        </td>
-                        <td class="align-middle">
-                            <form method="post">
-                                <input type="hidden" name="id" value="@s.OnderwerpId" />
-                                <button type="submit" class="delete-button" @*asp-page="Courses" asp-route-id="@s.OnderwerpId"*@ onclick="return confirm('Weet je zeker dat je dit onerwerp wilt verwijderen?')"><span class="btn-text">Verwijder</span></button>
-                            </form>
-                        </td>
-                    </tr>
-                }
+                <tbody>
+                    @foreach (var s in Model.Onderwerpen)
+                    {
+                        <tr>
+                            <td class="align-middle"><b>@s.Beschrijving</b></td>
+                            <td class="align-middle">
+                                <a asp-page="Details" asp-route-id="@s.OnderwerpId" class="video-button">Video</a>
+                            </td>
+                            <td class="align-middle">
+                                <form method="post" asp-page-handler="Delete">
+                                    <input type="hidden" name="id" value="@s.OnderwerpId" />
+                                    <button type="submit" class="delete-button" onclick="return confirm('Weet je zeker dat je dit onerwerp wilt verwijderen?')"><span class="btn-text">Verwijder</span></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

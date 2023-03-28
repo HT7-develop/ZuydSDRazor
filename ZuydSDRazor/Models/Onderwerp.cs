@@ -6,7 +6,8 @@ namespace ZuydSDRazor.Models
     public class Onderwerp
     {
         public int OnderwerpId { get; set; }
-        [Required]
+        //[Required]
         public string? Beschrijving { get; set; }
+        public ICollection<Video>? Videos { get; set; }
     }
 }

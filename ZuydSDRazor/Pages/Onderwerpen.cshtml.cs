@@ -24,13 +24,23 @@ namespace ZuydSDRazor.Pages
             db = injectedContext;
         }
 
-        public void OnGet()
+        public void OnGet(string sortOrder)
         {
-            Onderwerpen = db.Onderwerpen.OrderBy(s => s.Beschrijving).ToList();
+            switch (sortOrder)
+            {
+                case "omschrijving":
+                    Onderwerpen = db.Onderwerpen.OrderBy(s => s.Beschrijving).ToList();
+                    break;
+                case "omschrijving_desc":
+                    Onderwerpen = db.Onderwerpen.OrderByDescending(s => s.Beschrijving).ToList();
+                    break;
+                default:
+                    Onderwerpen = db.Onderwerpen.ToList();
+                    break;
+            }
         }
 
-
-        public async Task<IActionResult> OnPost(int id)
+        public async Task<IActionResult> OnPostDelete(int id)
         {
             var _onderwerp = await db.Onderwerpen.FindAsync(id);
             if (_onderwerp == null)
@@ -53,7 +63,6 @@ namespace ZuydSDRazor.Pages
             {
                 await db.Onderwerpen.AddAsync(Onderwerp);
                 await db.SaveChangesAsync();
-                TempData["success"] = "Category created successfully";
                 return RedirectToPage("Courses");
             }
             ModelState.AddModelError("Onderwerp", "Vul een naam in!");

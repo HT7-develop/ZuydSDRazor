@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}/{id?}"
 @model ZuydSDRazor.Pages.VideosModel
 @{
     Layout = "_Layout_Courses";
@@ -16,9 +16,12 @@
         @*Search bar*@
         <div style="margin:15px 0px 15px 0px;display:flex;flex-direction:row;justify-content:center;">
             <p>Zoek Video</p>
-            <form method="post" >
-                <input type="text" name="SearchTerm" style="width:30vw;" placeholder="Voer een zoek term in"/>
-                <button asp class="add-button" type="submit" asp-page-handler="Search">Zoek</button>
+            <form method="get">
+                <div class="form-group">
+                    <input type="text" asp-for="SearchString" class="align-middle" style="width:200px" />
+                    <input type="submit" value="Zoek" class="btn btn-primary" />
+                    <span asp-validation-for="SearchString" style="color:red; font-weight:900"></span>
+                </div>
             </form>
         </div>
 
@@ -27,6 +30,7 @@
                 <tr>
                     <th>Titel</th>
                     <th>Video</th>
+                    <th></th>
                 </tr>
 
                 @foreach (var s in Model.Videos)
@@ -34,12 +38,18 @@
                     <tr>
                         <td><b>@s.Titel</b></td>
                         <td>
-                            <iframe loading="lazy" src="@s.Link" >
+                            <iframe loading="lazy" src="@s.Link">
                             </iframe>
                         </td>
+                        <td><a asp-page="Details" asp-route-id="@s.VideoId" class="btn btn-outline-primary">Bewerk</a></td>
                     </tr>
                 }
             </table>
         </div>
     </div>
 </body>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

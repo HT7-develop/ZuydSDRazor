@@ -11,7 +11,7 @@ public static class SeedData
 {
     public static void Initialize(BontenDbContext context)
     {
-        if (context.Onderwerpen.Any() || context.Videos.Any() || context.Koppels.Any())
+        if (context.Onderwerpen.Any() || context.Videos.Any() )
         {
             return;
         }
@@ -168,36 +168,35 @@ public static class SeedData
 
         context.SaveChanges();
 
-        context.Koppels.AddRange(
+        //context.Koppels.AddRange(
 
-
-        new Koppel { Id = 1, VideoId = 1, OnderwerpId = 4 },
-        new Koppel { Id = 2, VideoId = 2, OnderwerpId = 3 },
-        new Koppel { Id = 3, VideoId = 3, OnderwerpId = 2 },
-        new Koppel { Id = 4, VideoId = 3, OnderwerpId = 7 },
-        new Koppel { Id = 5, VideoId = 4, OnderwerpId = 3 },
-        new Koppel { Id = 6, VideoId = 5, OnderwerpId = 10 },
-        new Koppel { Id = 7, VideoId = 6, OnderwerpId = 8 },
-        new Koppel { Id = 8, VideoId = 6, OnderwerpId = 9 },
-        new Koppel { Id = 9, VideoId = 7, OnderwerpId = 8 },
-        new Koppel { Id = 10, VideoId = 8, OnderwerpId = 8 },
-        new Koppel { Id = 11, VideoId = 8, OnderwerpId = 9 },
-        new Koppel { Id = 12, VideoId = 8, OnderwerpId = 10 },
-        new Koppel { Id = 13, VideoId = 9, OnderwerpId = 1 },
-        new Koppel { Id = 14, VideoId = 10, OnderwerpId = 1 },
-        new Koppel { Id = 15, VideoId = 11, OnderwerpId = 3 },
-        new Koppel { Id = 16, VideoId = 11, OnderwerpId = 6 },
-        new Koppel { Id = 17, VideoId = 12, OnderwerpId = 6 },
-        new Koppel { Id = 18, VideoId = 13, OnderwerpId = 7 },
-        new Koppel { Id = 19, VideoId = 14, OnderwerpId = 2 },
-        new Koppel { Id = 20, VideoId = 14, OnderwerpId = 5 },
-        new Koppel { Id = 21, VideoId = 14, OnderwerpId = 6 },
-        new Koppel { Id = 22, VideoId = 14, OnderwerpId = 7 },
-        new Koppel { Id = 23, VideoId = 15, OnderwerpId = 3 },
-        new Koppel { Id = 24, VideoId = 16, OnderwerpId = 3 },
-        new Koppel { Id = 25, VideoId = 17, OnderwerpId = 3 }
-        );
-        context.SaveChanges();
+        //new Koppel { Id = 1, VideoId = 1, OnderwerpId = 4 },
+        //new Koppel { Id = 2, VideoId = 2, OnderwerpId = 3 },
+        //new Koppel { Id = 3, VideoId = 3, OnderwerpId = 2 },
+        //new Koppel { Id = 4, VideoId = 3, OnderwerpId = 7 },
+        //new Koppel { Id = 5, VideoId = 4, OnderwerpId = 3 },
+        //new Koppel { Id = 6, VideoId = 5, OnderwerpId = 10 },
+        //new Koppel { Id = 7, VideoId = 6, OnderwerpId = 8 },
+        //new Koppel { Id = 8, VideoId = 6, OnderwerpId = 9 },
+        //new Koppel { Id = 9, VideoId = 7, OnderwerpId = 8 },
+        //new Koppel { Id = 10, VideoId = 8, OnderwerpId = 8 },
+        //new Koppel { Id = 11, VideoId = 8, OnderwerpId = 9 },
+        //new Koppel { Id = 12, VideoId = 8, OnderwerpId = 10 },
+        //new Koppel { Id = 13, VideoId = 9, OnderwerpId = 1 },
+        //new Koppel { Id = 14, VideoId = 10, OnderwerpId = 1 },
+        //new Koppel { Id = 15, VideoId = 11, OnderwerpId = 3 },
+        //new Koppel { Id = 16, VideoId = 11, OnderwerpId = 6 },
+        //new Koppel { Id = 17, VideoId = 12, OnderwerpId = 6 },
+        //new Koppel { Id = 18, VideoId = 13, OnderwerpId = 7 },
+        //new Koppel { Id = 19, VideoId = 14, OnderwerpId = 2 },
+        //new Koppel { Id = 20, VideoId = 14, OnderwerpId = 5 },
+        //new Koppel { Id = 21, VideoId = 14, OnderwerpId = 6 },
+        //new Koppel { Id = 22, VideoId = 14, OnderwerpId = 7 },
+        //new Koppel { Id = 23, VideoId = 15, OnderwerpId = 3 },
+        //new Koppel { Id = 24, VideoId = 16, OnderwerpId = 3 },
+        //new Koppel { Id = 25, VideoId = 17, OnderwerpId = 3 }
+        //);
+        //context.SaveChanges();
 
     }
 }

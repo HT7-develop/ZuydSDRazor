@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using ZuydSDRazor.Data;
 using ZuydSDRazor.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -8,31 +9,32 @@ namespace ZuydSDRazor.Pages
 {
     public class DetailsModel : PageModel
     {
+        public IEnumerable<Onderwerp> onderwerpen { get; set; } = null!;
+        public Onderwerp? Onderwerp { get; set; }
+        public Video? Video { get; set; }
         private BontenDbContext db;
-        public IEnumerable<Video> Videos { get; set; } = null!;
-        public IEnumerable<Koppel> Koppels { get; set; } = null!;
-
-        [BindProperty]
-        public List<Koppel> test { get; set; } = null!;
-        public int OnderwerpId { get; set; }
 
         public DetailsModel(BontenDbContext injectedContext)
         {
             db = injectedContext;
         }
 
-        public void OnGet(int Id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            OnderwerpId = Id;
-            // select all vids where the onderwerpId == Koppel.onderwerpId
-            Koppels = db.Koppels.Where(e => e.OnderwerpId == OnderwerpId);
-            List<Koppel> test = new List<Koppel>(Koppels);
-
-            foreach (Koppel test2 in test)
+            if (id == null)
             {
-                Console.WriteLine("First number in the list: " + test);
+                return NotFound();
             }
-            //Videos = db.Videos.Where(e=> e.VideoId == test);
+
+            Onderwerp = await db.Onderwerpen.Include(s => s.Videos).SingleOrDefaultAsync(v => v.OnderwerpId == id);
+            Video = await db.Videos.Include(v => v.Onderwerpen).SingleOrDefaultAsync(o => o.VideoId == id);
+
+            if (Onderwerp == null || Video == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
         }
     }
 }
