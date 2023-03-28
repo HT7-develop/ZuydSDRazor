@@ -32,6 +32,27 @@ namespace ZuydSDRazor.Migrations
                     b.ToTable("OnderwerpVideo");
                 });
 
+            modelBuilder.Entity("ZuydSDRazor.Models.Koppel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OnderwerpId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VideoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OnderwerpId");
+
+                    b.HasIndex("VideoId");
+
+                    b.ToTable("Koppels");
+                });
+
             modelBuilder.Entity("ZuydSDRazor.Models.Onderwerp", b =>
                 {
                     b.Property<int>("OnderwerpId")
@@ -39,6 +60,7 @@ namespace ZuydSDRazor.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Beschrijving")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("OnderwerpId");
@@ -76,6 +98,25 @@ namespace ZuydSDRazor.Migrations
                         .HasForeignKey("VideosVideoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ZuydSDRazor.Models.Koppel", b =>
+                {
+                    b.HasOne("ZuydSDRazor.Models.Onderwerp", "Onderwerp")
+                        .WithMany()
+                        .HasForeignKey("OnderwerpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ZuydSDRazor.Models.Video", "Video")
+                        .WithMany()
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Onderwerp");
+
+                    b.Navigation("Video");
                 });
 #pragma warning restore 612, 618
         }

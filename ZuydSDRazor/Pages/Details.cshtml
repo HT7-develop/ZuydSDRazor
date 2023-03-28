@@ -1,7 +1,7 @@
-﻿@page
+﻿@page "{Id:int}"
 @model ZuydSDRazor.Pages.DetailsModel
 @{
-    Layout = "_Layout_Courses";
+    Layout = "_Layout";
     ViewData["Title"] = "Jo Bonten | Video";
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -14,23 +14,24 @@
     </nav>
     <div class="row" style="margin: 0px 20px 0px 20px; padding-top:8rem;">
         <div class="col-8">
+            <p>ID is: @Model.OnderwerpId </p>
             <table class="table table-hover">
                 <tr>
                     <th>Titel</th>
                     <th>Video</th>
                     <th></th>
                 </tr>
-                @*    @foreach (var s in Model)
-                {*@
+                @foreach (var s in Model.Videos)
+                {
                 <tr>
-                    <td> <h1>test</h1></td>
+                    <td> <h1></h1></td>
                     <td>
-                        @*<iframe loading="lazy" src="@s.Link">
-                        </iframe>*@
+                        <iframe loading="lazy" src="@s.Link">
+                        </iframe>
                     </td>
                     <td><button>Bewerk</button></td>
                 </tr>
-                @*}*@
+                }
             </table>
         </div>
     </div>

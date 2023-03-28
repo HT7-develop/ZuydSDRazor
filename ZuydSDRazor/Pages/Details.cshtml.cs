@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ZuydSDRazor.Data;
 using ZuydSDRazor.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ZuydSDRazor.Pages
 {
@@ -9,7 +10,11 @@ namespace ZuydSDRazor.Pages
     {
         private BontenDbContext db;
         public IEnumerable<Video> Videos { get; set; } = null!;
-        public string VideoSearch { get; set; }
+        public IEnumerable<Koppel> Koppels { get; set; } = null!;
+
+        [BindProperty]
+        public List<Koppel> test { get; set; } = null!;
+        public int OnderwerpId { get; set; }
 
         public DetailsModel(BontenDbContext injectedContext)
         {
@@ -18,8 +23,16 @@ namespace ZuydSDRazor.Pages
 
         public void OnGet(int Id)
         {
-            Videos = db.Videos.ToList();
-            //VideoSearch = Videos;
+            OnderwerpId = Id;
+            // select all vids where the onderwerpId == Koppel.onderwerpId
+            Koppels = db.Koppels.Where(e => e.OnderwerpId == OnderwerpId);
+            List<Koppel> test = new List<Koppel>(Koppels);
+
+            foreach (Koppel test2 in test)
+            {
+                Console.WriteLine("First number in the list: " + test);
+            }
+            //Videos = db.Videos.Where(e=> e.VideoId == test);
         }
     }
 }

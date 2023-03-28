@@ -16,7 +16,7 @@ namespace ZuydSDRazor.Migrations
                 {
                     OnderwerpId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Beschrijving = table.Column<string>(type: "TEXT", nullable: true)
+                    Beschrijving = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,6 +35,32 @@ namespace ZuydSDRazor.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Videos", x => x.VideoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Koppels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    VideoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    OnderwerpId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Koppels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Koppels_Onderwerpen_OnderwerpId",
+                        column: x => x.OnderwerpId,
+                        principalTable: "Onderwerpen",
+                        principalColumn: "OnderwerpId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Koppels_Videos_VideoId",
+                        column: x => x.VideoId,
+                        principalTable: "Videos",
+                        principalColumn: "VideoId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -62,6 +88,16 @@ namespace ZuydSDRazor.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Koppels_OnderwerpId",
+                table: "Koppels",
+                column: "OnderwerpId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Koppels_VideoId",
+                table: "Koppels",
+                column: "VideoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OnderwerpVideo_VideosVideoId",
                 table: "OnderwerpVideo",
                 column: "VideosVideoId");
@@ -70,6 +106,9 @@ namespace ZuydSDRazor.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Koppels");
+
             migrationBuilder.DropTable(
                 name: "OnderwerpVideo");
 

@@ -8,6 +8,5 @@ namespace ZuydSDRazor.Models
         public int OnderwerpId { get; set; }
         [Required]
         public string? Beschrijving { get; set; }
-        public ICollection<Video>? Videos { get; set; }
     }
 }

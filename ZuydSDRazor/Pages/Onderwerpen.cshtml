@@ -46,7 +46,9 @@
                 {
                     <tr>
                         <td class="align-middle"><b>@s.Beschrijving</b></td>
-                        <td class="align-middle"><a asp-page="Details" asp-route-id="@s.OnderwerpId" class="video-button">Video</a></td>
+                        <td class="align-middle">
+                            <a asp-page="Details" asp-route-id="@s.OnderwerpId" class="video-button">Video</a>
+                        </td>
                         <td class="align-middle">
                             <form method="post">
                                 <input type="hidden" name="id" value="@s.OnderwerpId" />
